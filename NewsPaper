@@ -1,0 +1,114 @@
+from tkinter import *
+from PIL import Image, ImageTk
+import pygame
+import webbrowser
+
+import os
+
+
+
+
+#Creating the root window
+root=Tk()
+root.title("Macleans Newspaper")
+root.geometry("1180x644")
+root.minsize(width=300, height=300)
+root.iconbitmap("img/Macleans_College_logo.ico")
+
+
+#Creating headling
+Header = Frame(root, bg="#ADD8E6", width=5, relief=SUNKEN)
+Header.pack(side=TOP, fill=X)
+Headerlabel = Label(Header, text="Macleans Newspaper")
+
+#Heading
+Head = Frame(root, bg="#05014a", height= 50, pady=20)
+Head.pack(side=TOP, fill=X)
+HeadT = Label(Head, text ="Macleans Newspaper", fg="red", bg ="#05014a",font="Arial, 25")
+HeadT.place(relx=0.6, rely=0.5, anchor=E)
+
+#Date
+date= Label(Head, text="2/April/25", bg="#05014a", fg="red", font="Arial, 25" )
+date.place(relx=0.8, rely=0.5, anchor=E)
+
+#news 1
+f1 = Frame(root, bg="#ADD8E6", borderwidth=0, relief=SUNKEN)
+f1.pack(side=TOP, fill=X)
+p1 = Image.open("img/GIGA.ico")
+p1 = ImageTk.PhotoImage(p1)
+l1 = Label(f1, image=p1, width=100, height=100)
+l1.pack(side=LEFT, padx=0)
+l2 = Label(f1, text = "Man smiling")
+l2.place( rely=0.1, relx=0.5, anchor=CENTER)
+
+#Devider
+border = Frame(root, bg="#05014a", height=25)
+border.pack(side=TOP, fill=X)
+borderT = Label(border, text ="Devided" )
+borderT.pack(side=TOP)
+
+#news 2
+f3 = Frame(root, bg="#ADD8E6", borderwidth=0, relief=SUNKEN)
+f3.pack(side=TOP, fill=X)
+p3 = Image.open("img/BingBong.ico")
+p3 = ImageTk.PhotoImage(p3)
+l3 = Label(f3, image=p3, width=200, height=200)
+l3.pack(side=RIGHT, padx=0)
+l4 = Label(f3, text = "Pink elephant on the loose")
+l4.place( rely=0.1, relx=0.5, anchor=CENTER)
+
+#Devider
+border = Frame(root, bg="#05014a", height=25)
+border.pack(side=TOP, fill=X)
+borderT = Label(border, text ="Devided" )
+borderT.pack(side=TOP)
+
+#news 3
+f5 = Frame(root, bg="#ADD8E6", borderwidth=0, relief=SUNKEN)
+f5.pack(side=TOP, fill=X)
+p5 = Image.open("img/TIGER.ico")
+p5 = ImageTk.PhotoImage(p5)
+l5 = Label(f5, image=p5, width=100, height=100)
+l5.pack(side=LEFT, padx=0)
+l6 = Label(f5, text = "Pink elephant being chased")
+l6.place( rely=0.1, relx=0.5, anchor=CENTER)
+
+#Devider
+border = Frame(root, bg="#05014a", height=25)
+border.pack(side=TOP, fill=X)
+borderT = Label(border, text ="Devided" )
+borderT.pack(side=TOP)
+KDSODKSOKD
+#news 4
+f7 = Frame(root, bg="#ADD8E6", borderwidth=0, relief=SUNKEN)
+f7.pack(side=TOP, fill=X)
+p7 = Image.open("img/BingBong.ico")
+p7 = ImageTk.PhotoImage(p7)
+l7 = Label(f7, image=p7, width=200, height=200)
+l7.pack(side=RIGHT, padx=0)
+l8 = Label(f7, text = "Pink elephant put in jail, the elephan has been caught by the Auckland police for tresspassing")
+l8.place( rely=0.1, relx=0.5, anchor=CENTER)
+
+pygame.mixer.init()
+
+sound = pygame.mixer.Sound("sound/boom.mp3")
+
+def buttoncommand():
+     sound.play() 
+     print("Sigma")
+    
+    
+button = Button(f1, text="Press Me", command=buttoncommand)
+button.place(relx=0.5, rely=0.5, anchor=CENTER )
+
+def buttoncommand2():
+    os.system('notepad "text/News1.txt"')
+    
+button = Button(f3, text="Readmore", command=buttoncommand2)
+button.place(relx=0.5, rely=0.5, anchor=CENTER )
+
+
+
+#Creating the logo
+root.mainloop()
+
