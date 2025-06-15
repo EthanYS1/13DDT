@@ -1,12 +1,25 @@
 from tkinter import *
 from PIL import Image, ImageTk
+import func as func
 
-def openpls():
+
+
+def open_page1():
     root = Tk()
     root.title("Foodie")
     root.geometry("500x800")
     root.minsize("500","800")
     root.maxsize("500","800")
+    
+    BG= Label(root, bg="#61143a")
+    BG.place(x=0,y=0,width=500,height=800)
+    
+    func.listing(root, 50, "Images\Rat.png", "SUCK IT")
+
+    func.listing(root,325, "Images\Turty.png", "Woah")
+   
+  
+    
 
 
         
@@ -16,4 +29,8 @@ def openpls():
 
     root.bind('<Key>', close_on_s)
     root.mainloop()
+
     
+
+
+
