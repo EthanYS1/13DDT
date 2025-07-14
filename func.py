@@ -1,11 +1,13 @@
 from tkinter import *
 from PIL import Image, ImageTk
 import page1 as page1
+import page2 as page2
+import page1p5 as page1p5
 
 
 def Login_success(root):
     root.destroy()
-    page1.open_page1()
+    page1p5.open_page1p5()
     
     
    
@@ -62,30 +64,49 @@ def check_login(username, password):
 #------------------------------------------------------------------------------
 #Page1
 
-def listing (root, listing_y,image_path,food_text):
+def listing (root, listing_y,image_path,food_text, ingred, main_txt, cost):
+    
+    def item_selected():
+        
+        item_image = image_path
+        item_text = food_text
+        main_text = main_txt
+        ingredients = ingred
+        price = cost
+        print(f"Image Path: {image_path}")
+        print(f"Food Text: {food_text}")
+        print(f"Image Path: {ingred}")
+        print(f"Food Text: {main_txt}")
+        print(f"Image Path: {cost}")
+        root.destroy()
+        page2.open_page2(item_image, item_text, ingredients,main_text,price) 
+        print("Item Selected")
+        
+        
     
     
     list_label = Label(root, bg="#800F2F")
     list_label.place(x=15, y=listing_y, width=470, height=250)
     
-    
-    list_button = Button(list_label, text="Button")
+    list_button = Button(list_label, text="Button", command=item_selected)
     list_button.place(x=350, y=200, width=100, height=30)
     
     list_image_open = Image.open((image_path))
     resized_image = list_image_open.resize((330,330))
     list_image = ImageTk.PhotoImage(resized_image)
-    
+     
     list_image_label = Label(list_label, image=list_image, bg="#800F2F")    
     list_image_label.image = list_image
     list_image_label.place(x=-60, y=-5)
     
     list_text = Label(list_label,wraplength=175, justify="left", text=(food_text), fg="#EAEAEA", bg="#800F2F", font=("Comfortaa", 12, "bold") )
     list_text.place(x=285, y=20)
-   
     
-    
-    
+#-------------------------------------------------------------
+ #page 2
+ 
+
+        
 def close_on_s(root,event):
     if event.char == 's':
         root.destroy()

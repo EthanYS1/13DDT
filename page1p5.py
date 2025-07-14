@@ -2,9 +2,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 import func as func
 
-
-
-def open_page1():
+def open_page1p5():
     root = Tk()
     root.title("Foodie")
     root.geometry("500x800")
@@ -14,16 +12,6 @@ def open_page1():
     BG= Label(root, bg="#61143a")
     BG.place(x=0,y=0,width=500,height=800)
     
-    func.listing(root, 50, "Images\Rat.png", "KFC", "rat", "This fried KFC is very good", "$20.00")
-
-    func.listing(root,325, "Images\Turty.png", "Fired Turtle", "turtle", "This turtle tastes good trust", "$50.00")
-   
-  
-    
- 
-    
-
-                
     def close_on_s(event):
         if event.char == 's':
             root.destroy()
