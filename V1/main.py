@@ -2,6 +2,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 import func as func
 import page1 as page1
+import pymysql
 
 
 root = Tk()
@@ -21,7 +22,8 @@ BGLabel.place(x=-300, y=0)
 
 user_entry = func.user_input(root,370)#Username
 password_entry = func.password_input(root,470)#Password
-func.Login_success
+
 func.Login_button(root,600,user_entry,password_entry)
+func.signup_button(root)
 
 root.mainloop()

@@ -3,16 +3,21 @@ from PIL import Image, ImageTk
 import page1 as page1
 import page2 as page2
 import page1p5 as page1p5
+import page0p5 as page0p5
+import sqlite3
+from tkinter import messagebox
 
+def signup_button(root):
+    signup_button_Border = Label(root, bg="#771EAB")
+    signup_btn = Button(root, text="Sign Up", bg="#440c2c", fg="#EAEAEA", font=("Comfortaa", 12, "bold"), relief=SOLID)
+    signup_btn.place(x=210, y=700)
+    signup_button_Border.place(x=205, y=695, width=130, height=40)
 
 def Login_success(root):
     root.destroy()
     page1p5.open_page1p5()
     
     
-   
-  
-
 def Logo(root,Logo_y):
     BG_image= Image.open("Images\Login_background.png")
     Logo=ImageTk.PhotoImage(BG_image) 
@@ -51,6 +56,7 @@ def password_input(root,Login_input_y):
     password = Entry(root, font=("Comfortaa", 16), fg="#e4275e", bg="#61143a", bd=0, relief="solid", insertbackground="white")
     password.place(x=105, y=Login_input_y+5, width=290, height=50)
     return password 
+
 
 def check_login(username, password):
     if username == "1" and password == "2":
