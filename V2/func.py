@@ -45,7 +45,7 @@ def login(root, user_input_entry, password_input_entry):
     if result:
         messagebox.showinfo("Success", f"Welcome back, {username}!")
         root.destroy()
-        page1.open_page1()
+        page1p5.open_page1p5()
     else:
         messagebox.showerror("Failed", "Invalid username or password.")
         

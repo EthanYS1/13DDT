@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import Image, ImageTk
 import func as func
+import func2 as func2
 
 
 
@@ -14,6 +15,8 @@ def open_page1p5():
     
     BG= Label(root, bg="#61143a")
     BG.place(x=0,y=0,width=500,height=800)
+    
+    func2.restaurant_list(root, 50, "Images\KFC.jpg", "KFC")
     
     def close_on_s(event):
         if event.char == 's':
