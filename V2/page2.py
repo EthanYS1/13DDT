@@ -1,9 +1,7 @@
 from tkinter import *
 from PIL import Image, ImageTk
 import func as func
-
-
-
+import func2 as func2
 
 def open_page2(item_image, item_text, ingredients, main_text, price):
     root = Tk()
@@ -14,25 +12,19 @@ def open_page2(item_image, item_text, ingredients, main_text, price):
     
     BG= Label(root, bg="#61143a")
     BG.place(x=0,y=0,width=500,height=800)
-
-    
-        
+     
     c_img1 = Image.open(item_image)
     c_img1 = c_img1.resize((350,350))
     c_img2 = ImageTk.PhotoImage(c_img1)
     c_img_label = Label(root,image=c_img2)
     c_img_label.place(x=75,y=35)
-    
-    item_description = Label(root, text = f"{ingredients}\n\n{main_text}\n\n{price}"
+    item_description = Label(root, text = f"{item_text}\n\n{ingredients}\n\n{main_text}\n\n{price}"
 , bg="#e4275e",  fg="white")
     item_description.place (x=75, y=400, width=350, height=200)
     
+    func2.review_button_label(root)
     
     
-    
-    
-    print("Item pic placed", {item_text})
-        
     def close_on_s(event):
         if event.char == 's':
             root.destroy()

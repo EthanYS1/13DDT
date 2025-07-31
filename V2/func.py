@@ -6,6 +6,7 @@ import page1p5 as page1p5
 from tkinter import messagebox
 import sqlite3
 
+#Sqlite setup
 conn = sqlite3.connect('users.db')
 cursor = conn.cursor()
 cursor.execute('''
@@ -17,17 +18,19 @@ cursor.execute('''
 ''')
 conn.commit()
 
+#My database variables 
 user_input_entry = None
 password_input_entry = None
 
+#Gets user entry and strips of spaces
 def signup():
     username = user_input_entry.get().strip()
     password = password_input_entry.get().strip()
-    
+    #If there is no input on these, display msg
     if not username or not password:
         messagebox.showwarning("Empty", "Username and password cannot be empty.")
         return
-    
+    #Inserting the inputs into the database
     try:
         cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
         conn.commit()
@@ -35,13 +38,14 @@ def signup():
     except sqlite3.IntegrityError:
         messagebox.showerror("Error", f"Username '{username}' already exists.")
         
+#Login        
 def login(root, user_input_entry, password_input_entry):
     username = user_input_entry.get().strip()
     password = password_input_entry.get().strip()
 
     cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
     result = cursor.fetchone()
-
+    #Sees if user input matches with a result in the database
     if result:
         messagebox.showinfo("Success", f"Welcome back, {username}!")
         root.destroy()

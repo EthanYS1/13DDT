@@ -1,69 +1,61 @@
-import sqlite3
-from tkinter import *
-from tkinter import messagebox
+import tkinter as tk
+from tkinter import scrolledtext
+import os
 
-# === SETUP DATABASE ===
-conn = sqlite3.connect('users.db')
-cursor = conn.cursor()
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
-    )
-''')
-conn.commit()
+# File to store saved entries
+SAVE_FILE = "saved_text.txt"
 
-# === FUNCTIONS ===
-def sign_up():
-    username = username_entry.get().strip()
-    password = password_entry.get().strip()
+def load_saved_entries():
+    """Load all saved entries from file as a list."""
+    if os.path.exists(SAVE_FILE):
+        with open(SAVE_FILE, "r", encoding="utf-8") as file:
+            return file.read().splitlines()
+    return []
 
-    if not username or not password:
-        messagebox.showwarning("Empty", "Username and password cannot be empty.")
-        return
+def save_entries(entries):
+    """Save all entries back to the file."""
+    with open(SAVE_FILE, "w", encoding="utf-8") as file:
+        file.write("\n".join(entries))
 
-    try:
-        cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
-        conn.commit()
-        messagebox.showinfo("Success", f"User '{username}' signed up successfully!")
-    except sqlite3.IntegrityError:
-        messagebox.showerror("Error", f"Username '{username}' already exists.")
+def on_submit():
+    """Handle new entry submission."""
+    new_text = entry.get().strip()
+    if new_text:
+        all_entries.append(new_text)
+        save_entries(all_entries)
+        update_display()
+        entry.delete(0, tk.END)
 
-def log_in():
-    username = username_entry.get().strip()
-    password = password_entry.get().strip()
+def update_display():
+    """Update the text display area with all entries."""
+    text_display.config(state='normal')  # Enable editing
+    text_display.delete(1.0, tk.END)     # Clear current text
+    for line in all_entries:
+        text_display.insert(tk.END, line + "\n")
+    text_display.config(state='disabled')  # Make it read-only
 
-    cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
-    result = cursor.fetchone()
+# -------------------------------
+# GUI Setup
+# -------------------------------
+root = tk.Tk()
+root.title("Entry Logger")
+root.geometry("600x500")  # Long window
 
-    if result:
-        messagebox.showinfo("Success", f"Welcome back, {username}!")
-    else:
-        messagebox.showerror("Failed", "Invalid username or password.")
+# Entry box
+entry = tk.Entry(root, width=60)
+entry.pack(pady=10)
 
-# === GUI SETUP ===
-root = Tk()
-root.title("Login/Signup System")
-root.geometry("300x250")
+# Submit button
+submit_btn = tk.Button(root, text="Submit", command=on_submit)
+submit_btn.pack(pady=5)
 
-# Username label + entry
-username_label = Label(root, text="Username:")
-username_label.pack(pady=(15, 0))
-username_entry = Entry(root)
-username_entry.pack(pady=5)
+# Scrollable text display
+text_display = scrolledtext.ScrolledText(root, width=70, height=20, state='disabled', wrap='word')
+text_display.pack(pady=10)
 
-# Password label + entry
-password_label = Label(root, text="Password:")
-password_label.pack(pady=(10, 0))
-password_entry = Entry(root, show="*")  # show="*" hides the password
-password_entry.pack(pady=5)
+# Load entries on start
+all_entries = load_saved_entries()
+update_display()
 
-# Buttons
-signup_btn = Button(root, text="Sign Up", command=sign_up)
-signup_btn.pack(pady=10)
-
-login_btn = Button(root, text="Log In", command=log_in)
-login_btn.pack()
-
+# Start the GUI event loop
 root.mainloop()
