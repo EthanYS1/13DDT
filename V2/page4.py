@@ -3,7 +3,7 @@ from PIL import Image, ImageTk
 import func as func
 import func2 as func2
 
-def open_page3():
+def open_page4():
     root = Tk()
     root.title("Foodie")
     root.geometry("500x800")
@@ -14,13 +14,10 @@ def open_page3():
     BG.place(x=0,y=0,width=500,height=800)
      
     def review_list():
-        review_list_background=Label(root, bg="#FFFFFF")
+        review_list_background=Label(root, bg="#00FFAE")
         review_list_background.place(x=0,y=100,width=500,height=800)
         
     review_list()     
-    
-    func2.write_review(root)
-         
          
    
     

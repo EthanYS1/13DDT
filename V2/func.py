@@ -122,7 +122,7 @@ def listing (root, listing_y,image_path,food_text, ingred, main_txt, cost):
         print(f"Food Text: {main_txt}")
         print(f"Image Path: {cost}")
         root.destroy()
-        page2.open_page2(item_image, item_text, ingredients,main_text,price) 
+        page2.open_page2(item_image, item_text, ingredients, main_text, price) 
         print("Item Selected")
         
         

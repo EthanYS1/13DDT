@@ -4,10 +4,11 @@ import page1 as page1
 import page2 as page2
 import page1p5 as page1p5
 import page3 as page3
+import page4 as page4
 from tkinter import messagebox
 
 
-def restaurant_list(root, listing_y,image_path,main_text):
+def restaurant_list(root, listing_y,image_path):
     
     def restaurant_selected():
         
@@ -38,17 +39,38 @@ def restaurant_list(root, listing_y,image_path,main_text):
 
 def review_button_label(root):
     review_button_label = Label(root, bg="#800F2F")
-    review_button_label.place ( x = 100, 
+    review_button_label.place ( x = 200, 
                                y= 650,
-                               width=300,
+                               width=115,
                                height=60,
                                )
     def openpage3():
         root.destroy()
         page3.open_page3()
     
-    review_button= Button(root, command=openpage3 , text= "Reviews")
-    review_button.place(x=100, y=650)
+    review_button= Button(review_button_label, 
+                          command=openpage3 ,
+                          text= "Reviews",
+                          font=("Comfortaa", 15),
+                          fg = "white",
+                          bg="#800F2F")
+    review_button.place(x=10, y=10)
                             
+                            
+def write_review(root):             
+    
+    def openpage4():
+        root.destroy()
+        page4.open_page4()           
+    write_review_button= Button(root, 
+                            command=openpage4,
+                            text= "write_review",
+                            font=("Comfortaa", 15),
+                            fg = "white",
+                            bg="#800F2F")
+    write_review_button.place(x=150, y=25, width=200, height=50)                         
+            
+                        
+
                             
     

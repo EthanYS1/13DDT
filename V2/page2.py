@@ -18,10 +18,22 @@ def open_page2(item_image, item_text, ingredients, main_text, price):
     c_img2 = ImageTk.PhotoImage(c_img1)
     c_img_label = Label(root,image=c_img2)
     c_img_label.place(x=75,y=35)
-    item_description = Label(root, text = f"{item_text}\n\n{ingredients}\n\n{main_text}\n\n{price}"
-, bg="#e4275e",  fg="white")
+    item_description = Label(root)
     item_description.place (x=75, y=400, width=350, height=200)
     
+    #Title- big - bold
+    Label(item_description, text=item_text, font=("Helvetica", 16, "bold")).place(x=150,y=10)
+   
+    # main text
+    Label(item_description, text=main_text, font=("Helvetica", 12)).place(x=80,y=50)     
+        
+    #ingredients - 
+    Label(item_description, text=ingredients, font=("Helvetica", 12, "bold")).place(x=170,y=85)
+
+
+    # price - bold
+    Label(item_description, text=price, font=("Helvetica", 12, "bold")).place(x=150,y=125)
+        
     func2.review_button_label(root)
     
     
