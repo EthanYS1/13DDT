@@ -21,6 +21,7 @@ conn.commit()
 #My database variables 
 user_input_entry = None
 password_input_entry = None
+current_user = None
 
 #Gets user entry and strips of spaces
 def signup():
@@ -40,6 +41,8 @@ def signup():
         
 #Login        
 def login(root, user_input_entry, password_input_entry):
+    #makes current user global
+    global current_user
     username = user_input_entry.get().strip()
     password = password_input_entry.get().strip()
 
@@ -48,29 +51,26 @@ def login(root, user_input_entry, password_input_entry):
     #Sees if user input matches with a result in the database
     if result:
         messagebox.showinfo("Success", f"Welcome back, {username}!")
+        current_user = username
+        
+        
         root.destroy()
         page1p5.open_page1p5()
+        
     else:
         messagebox.showerror("Failed", "Invalid username or password.")
-        
+#Signup button widget            
 def signup_button(root):
     signup_button_Border = Label(root, bg="#771EAB")
     signup_btn = Button(root, command=signup, text="Sign Up", bg="#440c2c", fg="#EAEAEA", font=("Comfortaa", 12, "bold"), relief=SOLID)
     signup_btn.place(x=210, y=700, width=80, height=40 )
     signup_button_Border.place(x=205, y=695, width=90, height=50)
-
-    
-    
-def Logo(root,Logo_y):
-    BG_image= Image.open("Images\Login_background.png")
-    Logo=ImageTk.PhotoImage(BG_image) 
-    Logo_label=Label(root, image=Logo)
-    Logo_label.place (x=125,y=Logo_y,width=250,height=250)
-
+    #login button widget
 def Login_button(root, Login_button_y, user_input_entry, pass_input_entry):
     Login_button_Border = Label(root, bg="#771EAB")
     Login_button_Border.place(x=100, y=Login_button_y, width=300, height=60)
 
+    
     def attempt_login():
        login(root,user_input_entry, pass_input_entry)
 
@@ -78,7 +78,7 @@ def Login_button(root, Login_button_y, user_input_entry, pass_input_entry):
     button_login.place(x=105, y=Login_button_y + 5, width=290, height=50)
 
     
-    
+#User input username widget    
 def user_input(root,Login_input_y):
     Login_button_Border=Label(root, bg="#e4275e")
     Login_button_Border.place(x=100, y=Login_input_y, width=300, height=60)
@@ -86,7 +86,7 @@ def user_input(root,Login_input_y):
     user = Entry(root, font=("Comfortaa", 16), fg="#e4275e", bg="#61143a", bd=0, relief="solid", insertbackground="white")
     user.place(x=105, y=Login_input_y+5, width=290, height=50)
     return user 
-
+#User input password widget   
 def password_input(root,Login_input_y):
     Login_button_Border=Label(root, bg="#e4275e")
     Login_button_Border.place(x=100, y=Login_input_y, width=300, height=60)

@@ -16,6 +16,11 @@ def open_page1p5():
     BG= Label(root, bg="#61143a")
     BG.place(x=0,y=0,width=500,height=800)
     
+    
+    
+    r2_label = Label(root, bg="#FFFFFF", width=500, height=250, text=func.current_user)
+    r2_label.place(x=15, y=350, width= 470, height=250)
+    
     func2.restaurant_list(root, 50, "Images\KFC.jpg")
     
     def close_on_s(event):

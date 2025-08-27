@@ -62,6 +62,7 @@ def write_review(root):
     def openpage4():
         root.destroy()
         page4.open_page4()           
+        
     write_review_button= Button(root, 
                             command=openpage4,
                             text= "write_review",

@@ -14,9 +14,9 @@ def open_page1():
     BG= Label(root, bg="#61143a")
     BG.place(x=0,y=0,width=500,height=800)
     
-    func.listing(root, 50, "Images\Rat.png", "KFC", "rat", "Golden crispy chicken fired in olive oil. ", "$20.00")
+    func.listing(root, 50, "Images\Rat.png", "Wicked Pack", "Ingredients:Chicken, Bread, Potatoes", "Golden crispy chicken fired in olive oil. ", "$20.00")
 
-    func.listing(root,325, "Images\Turty.png", "Fired Turtle", "turtle", "This turtle tastes good trust", "$50.00")
+    func.listing(root,325, "Images\Turty.png", "Wicked Wings 8pc", "Ingredients: Chicken, Bread, Potatos", "8 Pack signiture Spicy Wings", "$18.00")
    
   
     
