@@ -23,11 +23,9 @@ def open_page1p5():
     
     func2.restaurant_list(root, 50, "Images\KFC.jpg")
     
-    def close_on_s(event):
-        if event.char == 's':
-            root.destroy()
 
-    root.bind('<Key>', close_on_s)
+    
+ 
     root.mainloop()
 
     

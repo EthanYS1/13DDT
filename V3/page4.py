@@ -1,5 +1,4 @@
 from tkinter import *
-from PIL import Image, ImageTk
 import func as func
 import func2 as func2
 import page2 as page2
@@ -46,7 +45,7 @@ def open_page4():
         review_content = review_text.get("1.0", END).strip()
         
         if not review_content:
-            messagebox.showwarning("Empty Review", "Please write a review before submitting.")
+            messagebox.showwarning("Empty Review", "Can not leave review blank")
             return
         
         if not func.current_user:
@@ -69,14 +68,9 @@ def open_page4():
     def go_back():
         root.destroy()
         page3.open_page3()
-    
+
     back_btn = Button(root, text="Back", command=go_back,
                      bg="#440c2c", fg="#EAEAEA", font=("Comfortaa", 12, "bold"))
     back_btn.place(x=20, y=720, width=80, height=40)
-    
-    def close_on_s(event):
-        if event.char == 's':
-            root.destroy()
 
-    root.bind('<Key>', close_on_s)
     root.mainloop()

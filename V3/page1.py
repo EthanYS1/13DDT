@@ -17,21 +17,3 @@ def open_page1():
     func.listing(root, 50, "Images\Rat.png", "Wicked Pack", "Ingredients:Chicken, Bread, Potatoes", "Golden crispy chicken fired in olive oil. ", "$20.00", "item1")
 
     func.listing(root,325, "Images\Turty.png", "Wicked Wings 8pc", "Ingredients: Chicken, Bread, herbs", "8 Pack signiture Spicy Wings", "$18.00", "item2")
-   
-  
-    
- 
-    
-
-                
-    def close_on_s(event):
-        if event.char == 's':
-            root.destroy()
-
-    root.bind('<Key>', close_on_s)
-    root.mainloop()
-
-    
-
-
-

@@ -8,6 +8,41 @@ import sqlite3
 
 
 
+conn = sqlite3.connect("reviews.db")
+c = conn.cursor()
+
+# Create the reviews table if it doesn't exist
+c.execute('''
+    CREATE TABLE IF NOT EXISTS reviews (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL,
+        review TEXT NOT NULL
+    )
+''')
+conn.commit()
+
+
+def save_review(review_text):
+    global current_user
+    if not review_text:
+        return False
+    if not current_user:
+        return False
+    try:
+        # Use the reviews database connection and cursor
+        reviews_conn = sqlite3.connect("reviews.db")
+        reviews_cursor = reviews_conn.cursor()
+        reviews_cursor.execute(
+            "INSERT INTO reviews (username, review) VALUES (?, ?)",
+            (current_user, review_text)
+        )
+        reviews_conn.commit()
+        reviews_conn.close()
+        return True
+    except Exception as e:
+        print(f"Error saving review: {e}")
+        return False
+
 
 #Sqlite sign up setup
 conn = sqlite3.connect('users.db')
@@ -21,17 +56,6 @@ cursor.execute('''
 ''')
 conn.commit()
 
-#reviews database setup
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS reviews (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT NOT NULL,
-        item_id TEXT NOT NULL,
-        review_text TEXT NOT NULL,
-        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-''')
-conn.commit()
 
 #My database variables 
 user_input_entry = None
